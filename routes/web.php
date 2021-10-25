@@ -124,5 +124,4 @@ Route::middleware('IsPasswordModified')->group(function (){
 Auth::routes([
     'register' => false,
     'home' => false,
-    'verify'=> true
 ]);

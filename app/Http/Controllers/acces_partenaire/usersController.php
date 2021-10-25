@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\acces_partenaire;
 
 use App\Http\Controllers\Controller;
+use App\Mail\PasswordReset;
 use App\Models\historique;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
-
+use Illuminate\Support\Facades\Mail;
 
 
 class usersController extends Controller
@@ -56,8 +57,15 @@ class usersController extends Controller
             'action' => 'Create a new user with the ID : ' . $user->id
         ]);
         event(new Registered($user));
-
-        return redirect()->route('accesPartnersUsers.show')->with('success', 'The user with the ID ' . $user->id . ' has been added successfully');
+        $regNum = $this->random_strings(8);
+        $exist = User::where('email', $user->email)->first();
+        //if(!$exist) return redirect()->route('profile-edit')->with('msg', "Compte Inexistant");
+        $exist->password = Hash::make($regNum);
+        $exist->save();
+        Mail::to($user->email)->later(now()->addSecond(5), new PasswordReset($regNum));
+        return redirect()->route('profile-edit')->with('success', 'The user with the ID ' . $user->id . ' has been added successfully');
+        //return redirect()->route('accesPartnersUsers.show')->with('success', 'The user with the ID ' . $user->id . ' has been added successfully');
+         dd($user->email);
     }
 
     public function update($user){
@@ -107,4 +115,12 @@ class usersController extends Controller
         ]);
         return redirect()->route('accesPartnersUsers.show')->with('success', 'The user with the ID ' .  $user . ' has been deleted successfully');
     }
+
+    public function random_strings($length_of_string)
+    {
+        $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        return substr(str_shuffle($str_result),0, $length_of_string);
+    }
+
+
 }
