@@ -30,6 +30,6 @@ class PasswordReset extends Mailable
      */
     public function build()
     {
-        return $this->subject("Recuperation de mot de passe")->view('reset');
+        return $this->subject("Email Verification")->view('reset');
     }
 }

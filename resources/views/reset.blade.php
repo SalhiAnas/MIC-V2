@@ -143,7 +143,7 @@
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                 <tr>
                     <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
-                        <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Réinitialisez votre mot de passe</h1>
+                        <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Welcome To MIC PROJECT</h1>
                     </td>
                 </tr>
             </table>
@@ -162,7 +162,7 @@
 
                 <tr>
                     <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                        <p style="margin: 0;">Cet email est envoy&eacute; car vous avez demander la r&eacute;cuperation de votre mot de passe<br/>Votre mot de passe est :</p>
+                        <p style="margin: 0;">Hi,<br/>Welcome to our team! To activate your account, please use this password.</p>
                     </td>
                 </tr>
 
@@ -186,14 +186,13 @@
 
                 <tr>
                     <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                        <p style="margin: 0;">vous pouvez vous connecter avec votre nouveau mot de passe ici</p>
-                        <p style="margin: 0;"><a href="<?php echo url('/'); ?>/login" target="_blank">Cliquez ici</a></p>
+                        <p class="btn btn-primary btn-lg"><a class="text-decoration-none text-white" href="<?php echo url('/'); ?>/login" target="_blank">TO SIGN IN, CLICK HERE!</a></p>
                     </td>
                 </tr>
 
                 <tr>
                     <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; border-bottom: 3px solid #d4dadf">
-                        <p style="margin: 0;">Cordialement</p>
+                        <p style="margin: 0;">Regards, <br/>MIC PROJECT Team</p>
                     </td>
                 </tr>
 
