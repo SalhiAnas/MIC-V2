@@ -118,10 +118,7 @@ Route::middleware('IsPasswordModified')->group(function (){
     Route::get('/acces_partenaire/productions', '\App\Http\Controllers\acces_partenaire\productionsController@productions')->name('accesPartnersProductions.show');
     Route::get('/acces_partenaire/productions/{production}/destroy', '\App\Http\Controllers\acces_partenaire\productionsController@destroy');
 
-
 });
-
-
 
 Auth::routes([
     'register' => false,

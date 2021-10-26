@@ -19,16 +19,31 @@ class profileController extends Controller
         return view('acces_partenaire.profile');
     }
 
-    public function edit(){
-        $data = \request()->validate([
-            'email' => ['required', 'string', 'email', 'max:255']
-        ]);
-        User::findOrFail(\request()->user()->id)->update($data);
-        historique::create([
-            'user_id' => Auth::user()->id,
-            'action' => 'Changed his Email'
-        ]);
-        return redirect('profile')->with('success', 'Your email adress has been updated successfully');
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request, $id){
+
+        $user = User::where('id', Auth::user()->id)->first();
+
+        if (Hash::check($request->password, $user->password)) {
+            // $data = \request()->validate([
+            //     'email' => ['required', 'string', 'email', 'max:255']
+            // ]);
+            // User::findOrFail(\request()->user()->id)->update($data);
+            $user->email = $request->email;
+            historique::create([
+                'user_id' => Auth::user()->id,
+                'action' => 'Changed his Email'
+            ]);
+            return redirect('profile')->with('success', 'Your email adress has been updated successfully');
+        }else{
+            return back()->with("False","Mot de passe incorrect");
+        }
     }
 
      /**
@@ -49,7 +64,6 @@ class profileController extends Controller
                         'time' => 2,
                         'threads' => 2,
                     ]);
-                    //echo "done";
                     $user->password = $hashed;
                     $user['password_modified_at'] = \Carbon\Carbon::now();
 
