@@ -84,10 +84,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="mb-5"><i class="fas fa-user-edit fs-4 pe-3"></i>Mettre à jour les informations personnelles</h5>
-                                <form id="form" action="{{route('updatePassword.edit' , Auth::user()->id)}}" method="post">
-                                    @csrf
-                                    @method('put')
-                                    @if ($message = Session::get('success'))
+                                @if ($message = Session::get('success'))
                                         <div class="alert alert-success">
                                             <strong>{{ $message }}</strong>
                                         </div>
@@ -97,6 +94,9 @@
                                             <strong class="text-danger">{{ $message }}</strong>
                                         </div>
                                     @endif
+                                <form action="{{route('updatePassword.edit' , Auth::user()->id)}}" method="POST">
+                                    @csrf
+                                    @method('put')
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="pt-2">Adresse e-mail</h6>
@@ -106,9 +106,13 @@
                                         </div>
                                     </div>
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Enregistrer les modifications
-                                    </button>
+                                    <div class="row">
+                                        <div class="mr-0" style="max-width: max-content; margin-left: auto;">
+                                            <button type="button" class="mt-3 mb-3 rounded-1 btn btn-success bg-base border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                Enregistrer les modifications
+                                            </button>
+                                        </div>
+                                    </div>
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -121,9 +125,6 @@
                                             <div class="modal-body">
                                                 <label for="inputPassword5" class="form-label">Password</label>
                                                 <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" name="password">
-                                                {{-- <div id="passwordHelpBlock" class="form-text">
-                                                  Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
-                                                </div> --}}
                                             </div>
                                             <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -146,7 +147,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="pb-5" ><i class="fas fa-user-lock fs-4 pe-3"></i>Changer le mot de passe</h5>
-                                    <form action="{{route('updatePassword.update' , Auth::user()->id)}}" method="post">
+                                    <form action="{{route('updatePassword.update' , Auth::user()->id)}}" method="POST">
                                         @csrf
                                         @method('put')
                                         @if ($message = Session::get('successPassword'))
