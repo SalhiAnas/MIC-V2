@@ -26,16 +26,15 @@ class profileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id){
 
+
+    public function edit(Request $request){
         $user = User::where('id', Auth::user()->id)->first();
-
+        $data = \request()->validate([
+            'email' => ['required', 'string', 'email', 'max:255']
+        ]);
         if (Hash::check($request->password, $user->password)) {
-            // $data = \request()->validate([
-            //     'email' => ['required', 'string', 'email', 'max:255']
-            // ]);
-            // User::findOrFail(\request()->user()->id)->update($data);
-            $user->email = $request->email;
+//            User::findOrFail(\request()->user()->id)->update($data);
             historique::create([
                 'user_id' => Auth::user()->id,
                 'action' => 'Changed his Email'

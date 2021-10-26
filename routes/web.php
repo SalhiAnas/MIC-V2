@@ -102,6 +102,7 @@ Route::post('/acces_partenaire/productions/create', '\App\Http\Controllers\acces
 Route::patch('/acces_partenaire/productions/{production}/update', '\App\Http\Controllers\acces_partenaire\productionsController@update');
 
 
+
 Route::get('/profile', '\App\Http\Controllers\acces_partenaire\profileController@profile')->name('profile-edit');
 
 Route::patch('/profile/edit', '\App\Http\Controllers\acces_partenaire\profileController@edit');

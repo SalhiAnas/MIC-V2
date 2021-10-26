@@ -84,9 +84,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="mb-5"><i class="fas fa-user-edit fs-4 pe-3"></i>Mettre à jour les informations personnelles</h5>
-                                <form id="form" action="{{route('updatePassword.edit' , Auth::user()->id)}}" method="post">
+                                <form id="form" action="{{route('updatePassword.edit' , Auth::user()->id)}}" method="put">
                                     @csrf
-                                    @method('put')
+                                    @method('PUT')
                                     @if ($message = Session::get('success'))
                                         <div class="alert alert-success">
                                             <strong>{{ $message }}</strong>
