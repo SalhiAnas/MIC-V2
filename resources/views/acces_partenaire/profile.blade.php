@@ -4,13 +4,32 @@
         <title>Acces Patenaire - MIC</title>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <meta content="" name="description">
         <meta content="" name="keywords">
         <script src="https://kit.fontawesome.com/5fdfb057c8.js" crossorigin="anonymous"></script>
         @include('components.css')
     </head>
     <body>
-
+    <div class="modal fade" id="getCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown
+                        printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" ng-click="cancel()">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="ok()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
     @include('components.nav')
     <main id="main">
         <style type="text/css">
@@ -28,7 +47,7 @@
                 border: 0 solid transparent;
                 border-radius: .25rem;
                 margin-bottom: 1.5rem;
-                box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+                box-shadow: 0 2px 6px 0 rgb(218 218 253 /65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
             }
             .me-2 {
                 margin-right: .5rem!important;
@@ -37,7 +56,12 @@
         <div class="container mt-5">
             <div class="main-body">
                 @if($errors->any())
-                    <div class="alert alert-danger text-start" role="alert"><strong>{{$errors->first()}}</strong></div>
+                    <script>
+                    $(document).ready(function(){
+                        $("#getCodeModal").modal('show');
+                    });
+                    </script>
+{{--                    <div class="alert alert-danger text-start" role="alert"><strong>{{$errors->first()}}</strong></div>--}}
                 @endif
                 <div class="row">
                     <div class="col-lg-3">
