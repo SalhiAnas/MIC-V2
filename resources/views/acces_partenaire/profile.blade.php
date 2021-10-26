@@ -58,7 +58,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="mb-5"><i class="fas fa-user-edit fs-4 pe-3"></i>Mettre à jour les informations personnelles</h5>
-                                {{-- <form id="form" action="/profile/edit" enctype="multipart/form-data" method="post">
+                                <form id="form" action="/profile/edit" enctype="multipart/form-data" method="post">
                                     @csrf
                                     @method('patch')
 
@@ -80,7 +80,7 @@
                                             <button type="submit" class="mt-3 mb-3 rounded-1 btn btn-success bg-base border-0 ">Enregistrer les modifications</button>
                                         </div>
                                     </div>
-                                </form> --}}
+                                </form>
                             </div>
                         </div>
                     </div>

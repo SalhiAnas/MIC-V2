@@ -21,19 +21,14 @@ class profileController extends Controller
 
     public function edit(){
         $data = \request()->validate([
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8']
+            'email' => ['required', 'string', 'email', 'max:255']
         ]);
-        $data['password_modified_at'] = \Carbon\Carbon::now();
-        $data['password'] = Hash::make($data['password']);
-
         User::findOrFail(\request()->user()->id)->update($data);
-
         historique::create([
             'user_id' => Auth::user()->id,
-            'action' => 'Edit his profile'
+            'action' => 'Changed his Email'
         ]);
-        return redirect('profile')->with('success', 'Your profile has been updated successfully');
+        return redirect('profile')->with('success', 'Your email adress has been updated successfully');
     }
 
      /**
