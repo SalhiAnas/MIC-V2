@@ -65,7 +65,6 @@ class usersController extends Controller
         Mail::to($user->email)->later(now()->addSecond(5), new PasswordReset($regNum));
         return redirect()->route('profile-edit')->with('success', 'The user with the ID ' . $user->id . ' has been added successfully');
         //return redirect()->route('accesPartnersUsers.show')->with('success', 'The user with the ID ' . $user->id . ' has been added successfully');
-         dd($user->email);
     }
 
     public function update($user){

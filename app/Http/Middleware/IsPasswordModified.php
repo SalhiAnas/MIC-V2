@@ -18,7 +18,7 @@ class IsPasswordModified
      */
     public function handle(Request $request, Closure $next)
     {
-        if ((auth::user()->password_modified_at == null))
+        if ((auth::user()->password_modified_at == null) && (auth::user()->type_profile=="user") )
         {
             return redirect(route('profile-edit'))->withErrors(['error' => 'Vous devez changer votre mot de passe dans votre premiere authentification !']);;
         }
