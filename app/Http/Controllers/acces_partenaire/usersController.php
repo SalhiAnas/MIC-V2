@@ -39,7 +39,7 @@ class usersController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:Users'],
-            'password' => ['required', 'string', 'min:8'],
+            // 'password' => ['required', 'string', 'min:8'],
             'institut' => ['required', 'in:cnrst,ensias,ensmr,managem,mascir,uca']
         ]);
         $data['first_name'] = ucfirst($data['first_name']);

@@ -35,4 +35,50 @@ class profileController extends Controller
         ]);
         return redirect('profile')->with('success', 'Your profile has been updated successfully');
     }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        if ($request->NewPassword == $request->ConfirmNewPassword) {
+            if (strlen($request->NewPassword) > 8) {
+                $user = User::where('id', Auth::user()->id)->first();
+                if (Hash::check($request->password, $user->password)) {
+                    $hashed = Hash::make($request->NewPassword, [
+                        'memory' => 1024,
+                        'time' => 2,
+                        'threads' => 2,
+                    ]);
+                    //echo "done";
+                    $user->password = $hashed;
+                    $user['password_modified_at'] = \Carbon\Carbon::now();
+
+                    $user->save();
+
+                    historique::create([
+                        'user_id' => Auth::user()->id,
+                        'action' => 'Changed his password'
+                    ]);
+
+                    return back()
+                        ->with('successPassword', "Le mot de passe a été bien modifié");
+                } else {
+                    return back()
+                        ->with('FalsePassword', "Mot de passe incorrect");
+                }
+            } else {
+                return back()
+                    ->with('ShortPassword', "Mot de passe trop court!");
+            }
+        } else {
+            return back()
+                ->with('PasswordsDifferent', "Les deux mots de passe ne sont pas identiques");
+        }
+    }
+
 }

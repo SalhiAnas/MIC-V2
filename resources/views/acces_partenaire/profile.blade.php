@@ -18,7 +18,7 @@
                             <h4 class="modal-title" id="update_user_label"><b>Modifier votre profile</b></h4>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form class="form-outline" method="post" action="/profile/edit">
+                        <form class="form-outline" method="post" action="{{route('updatePassword.update' , Auth::user()->id)}}">
                             @csrf
                             @method('PATCH')
                             <div class="modal-body">
@@ -28,10 +28,29 @@
                                         <input type="email" name="email" class="form-control" value="{{Auth::user()->email}}">
                                     </div>
                                 </div>
-                                <div class="mb-3 row align-middle">
-                                    <label class="col-sm-2 col-form-label">Mot de passe</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" name="password" class="form-control">
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Mot de passe actuel</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input name="password" type="password" class="rounded-0 form-control" id="exampleInputPassword1" required>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Nouveau mot de passe</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input name="NewPassword" type="password" class="rounded-0 form-control" id="exampleInputPassword1" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0 fst-normal">Confirmer le mot de passe</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input  name="ConfirmNewPassword" type="password" class="rounded-0 form-control" id="exampleInputPassword2" required>
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +63,7 @@
                 </div>
             </div>
             <div class="text-center container p-5 col-sm-12 col-md-8">
-                @if(session('success'))
+                {{-- @if(session('success'))
                     <div class="alert alert-success text-start" role="alert"><strong>{{ session('success') }}</strong></div>
                 @endif
                 @error('email')
@@ -52,7 +71,28 @@
                 @enderror
                 @error('password')
                 <div class="alert alert-danger text-start" role="alert"><strong>{{ $message }}</strong></div>
-                @enderror
+                @enderror --}}
+
+                @if ($message = Session::get('successPassword'))
+                <div class="alert alert-success">
+                    <strong>{{ $message }}</strong>
+                </div>
+                @endif
+                @if ($message = Session::get('FalsePassword'))
+                <div class="alert alert-danger">
+                    <strong class="text-danger">{{ $message }}</strong>
+                </div>
+                @endif
+                @if ($message = Session::get('PasswordsDifferent'))
+                <div class="alert alert-danger">
+                    <strong class="text-danger">{{ $message }}</strong>
+                </div>
+                @endif
+                @if ($message = Session::get('ShortPassword'))
+                <div class="alert alert-danger">
+                    <strong class="text-danger">{{ $message }}</strong>
+                </div>
+                @endif
 
                     @if($errors->any())
                         <div class="alert alert-danger text-start" role="alert"><strong>{{$errors->first()}}</strong></div>

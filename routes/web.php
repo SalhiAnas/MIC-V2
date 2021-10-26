@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\acces_partenaire\profileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', '\App\Http\Controllers\indexController@index')->name('index.show');
@@ -125,3 +127,7 @@ Auth::routes([
     'register' => false,
     'home' => false,
 ]);
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('updatePassword', profileController::class);
+});
