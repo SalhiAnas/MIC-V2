@@ -63,8 +63,8 @@ class usersController extends Controller
         $exist->password = Hash::make($regNum);
         $exist->save();
         Mail::to($user->email)->later(now()->addSecond(5), new PasswordReset($regNum));
-        return redirect()->route('profile-edit')->with('success', 'The user with the ID ' . $user->id . ' has been added successfully');
-        //return redirect()->route('accesPartnersUsers.show')->with('success', 'The user with the ID ' . $user->id . ' has been added successfully');
+//        return redirect()->route('profile-edit')->with('success', 'The user with the ID ' . $user->id . ' has been added successfully');
+        return redirect()->route('accesPartnersUsers.show')->with('success', 'The user with the ID ' . $user->id . ' has been added successfully');
     }
 
     public function update($user){
