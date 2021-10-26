@@ -34,7 +34,7 @@ class profileController extends Controller
             'email' => ['required', 'string', 'email', 'max:255']
         ]);
         if (Hash::check($request->password, $user->password)) {
-//            User::findOrFail(\request()->user()->id)->update($data);
+           User::findOrFail(\request()->user()->id)->update($data);
             historique::create([
                 'user_id' => Auth::user()->id,
                 'action' => 'Changed his Email'

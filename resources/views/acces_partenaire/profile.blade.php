@@ -105,10 +105,13 @@
                                             <input type="email" value="{{Auth::user()->email}}" class="rounded-0 form-control" name="email">
                                         </div>
                                     </div>
+
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Enregistrer les modifications
-                                    </button>
+                                   <div class="row">
+                                        <div class="mr-0" style="max-width: max-content; margin-left: auto;">
+                                            <button type="button" class="mt-3 mb-3 rounded-1 btn btn-success bg-base border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">Enregistrer les modifications</button>
+                                        </div>
+                                    </div>
 
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
