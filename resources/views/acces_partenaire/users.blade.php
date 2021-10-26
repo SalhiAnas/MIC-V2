@@ -74,12 +74,12 @@
                                                     <input type="email" name="email" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="mb-3 row align-middle">
+                                            {{-- <div class="mb-3 row align-middle">
                                                 <label class="col-sm-2 col-form-label">Mot de passe</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="password" class="form-control">
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="mb-3 row align-middle">
                                                 <label class="col-sm-2 col-form-label">Institut</label>
                                                 <div class="col-sm-10">
@@ -137,12 +137,12 @@
                                                     <input type="email" id="email" name="email" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="mb-3 row align-middle">
+                                            {{-- <div class="mb-3 row align-middle">
                                                 <label class="col-sm-2 col-form-label">Mot de passe</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" id="password" name="password" class="form-control">
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="mb-3 row align-middle">
                                                 <label class="col-sm-2 col-form-label">Institut</label>
                                                 <div class="col-sm-10">
